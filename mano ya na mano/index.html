@@ -1,127 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Calculator</title>
-  <style>
-    body {
-      background: #111;
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .calculator {
-      background: #222;
-      padding: 20px;
-      border-radius: 10px;
-      width: 260px;
-    }
-
-    #display {
-      background: #000;
-      color: #0f0;
-      font-size: 24px;
-      padding: 10px;
-      margin-bottom: 10px;
-      text-align: right;
-      border-radius: 5px;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    button {
-      padding: 15px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      background: #444;
-      color: white;
-      cursor: pointer;
-    }
-
-    .equal { background: #28a745; }
-    .clear { background: #dc3545; }
-    .operator { background: #ffc107; color: black; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.S</title>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/640px-JavaScript-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-  <div class="calculator">
-    <div id="display">0</div>
-    <div class="buttons">
-      <button onclick="press('7')">7</button>
-      <button onclick="press('8')">8</button>
-      <button onclick="press('9')">9</button>
-      <button class="operator" onclick="press('+')">+</button>
 
-      <button onclick="press('4')">4</button>
-      <button onclick="press('5')">5</button>
-      <button onclick="press('6')">6</button>
-      <button class="operator" onclick="press('-')">-</button>
 
-      <button onclick="press('1')">1</button>
-      <button onclick="press('2')">2</button>
-      <button onclick="press('3')">3</button>
-      <button class="operator" onclick="press('*')">*</button>
+    
+    <i class="fa-solid fa-fan rotate cl"></i>
 
-      <button onclick="press('0')">0</button>
-      <button onclick="press('.')">.</button>
-      <button class="equal" onclick="calculate()">=</button>
-      <button class="operator" onclick="press('/')">/</button>
-
-      <button class="clear" onclick="clearDisplay()" style="grid-column: span 4;">Clear</button>
+    <div class="Heading">
+        Stop Watch
     </div>
-  </div>
 
-  <script>
-    let display = document.getElementById('display');
-    let input = "";
+    <div class="stopwatch-inner">
+        <div class="watch">
+            <div id="hour" class="hours c">0</div>
+            <div id="min" class="min c">0</div>
+            <div id="sec" class="sec c">0</div>
+            <div id="msec" class="m-sec c">0</div>
+        </div>
 
-    function press(value) {
-      if (display.innerText === '0' || display.innerText === 'Error') {
-        input = value;
-      } else {
-        input += value;
-      }
-      display.innerText = input;
-    }
+        <div class="buttons">
+            <button id="click" onclick="start ()">Start</button>
+            <button id="stop" onclick="stop ()">Stop</button>
+            <button id="reset" onclick="reset()">Reset</button>
+        </div>
+    </div>
 
-    function clearDisplay() {
-      input = "";
-      display.innerText = '0';
-    }
 
-    function calculate() {
-      try {
-        // split input into numbers and operators
-        let numbers = input.split(/[\+\-\*\/]/).map(Number);
-        let operators = input.split('').filter(c => ['+', '-', '*', '/'].includes(c));
+        
 
-        // simple left to right calculation (no operator priority)
-        let result = numbers[0];
-        for (let i = 0; i < operators.length; i++) {
-          let next = numbers[i + 1];
-          let op = operators[i];
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
 
-          if (op === '+') result += next;
-          else if (op === '-') result -= next;
-          else if (op === '*') result *= next;
-          else if (op === '/') result /= next;
-        }
 
-        display.innerText = result;
-        input = result.toString();
-      } catch (e) {
-        display.innerText = "Error";
-        input = "";
-      }
-    }
-  </script>
+
 </body>
 </html>
